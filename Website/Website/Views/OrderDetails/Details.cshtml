@@ -1,0 +1,51 @@
+﻿@model Website.Models.OrderDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Descriptions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Descriptions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPriceSale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPriceSale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantitySale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantitySale)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ODID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

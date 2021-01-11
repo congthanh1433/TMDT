@@ -1,0 +1,13 @@
+DataContext db = new DataContext();
+            PhanQuyen admin = new PhanQuyen()
+            {
+                LoaiQuyen = "admin"
+            };
+            db.PhanQuyens.Add(admin);
+            db.SaveChanges();
+            PhanQuyen khach = new PhanQuyen()
+            {
+                LoaiQuyen = "khach"
+            };
+            db.PhanQuyens.Add(khach);
+            db.SaveChanges();

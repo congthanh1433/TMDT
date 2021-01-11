@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "DetailHistory";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<h2>DetailHistory</h2>
+
+@model IEnumerable<Website.Models.OrderDetail>
+@foreach (var d in Model)
+{
+    <table class="table">
+    <tr>
+        <th>
+            <h2><img src="@d.Product.Hinh" style="width:200px;height:200px;" /></h2>
+        </th>
+        <th>
+            <h3>Tên sản phẩm: @d.Product.ProductName</h3>
+            <h3>Giá @d.Product.Price</h3>
+            <h3>Số Lượng @d.QuantitySale</h3>
+            <h3>Tình trạng @d.Order.TinhTrang</h3>
+            <h3>Thời gian @d.Order.Date</h3>
+        </th>
+    </tr>   
+    </table>
+}

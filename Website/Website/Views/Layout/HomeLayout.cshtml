@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Laptop so 1 Viet Nam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/themes/images/logo1.png">
+    <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+    <!-- bootstrap -->
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <link href="~/Content/themes/css/bootstrappage.css" rel="stylesheet">
+
+    <!-- global styles -->
+    <link href="~/Content/themes/css/flexslider.css" rel="stylesheet">
+    <link href="~/Content/themes/css/main.css" rel="stylesheet">
+
+    <!-- scripts -->
+    <script src="~/Content/themes/js/jquery-1.7.2.min.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/themes/js/superfish.js"></script>
+    <script src="~/Content/themes/js/jquery.scrolltotop.js"></script>
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="top-bar" class="container">
+        <div class="row">
+            <div class="span4">
+
+                @using (Html.BeginForm("Search", "Layout",FormMethod.Get))
+                {     
+                <form method="POST" class="search_form">
+                    <input type="text" class="input-block-level search-query" name="name" placeholder="Tìm kiếm sản phẩm" style="color: black;">
+                </form>
+                    }
+
+</div>
+            <div class="span8">
+                <div class="account pull-right">
+                    <ul class="user-menu">
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="@Url.Action("Index", "Cart")">Your Cart</a></li>
+                        <li><a href="@Url.Action("Index","CheckOut")">Checkout</a></li>
+                        <li><a href="@Url.Action("History","Customers")">History</a></li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li><a href="@Url.Action("Index","Products1",new {area="admin"})">Sản phẩm</a></li>
+                            <li><a href="@Url.Action("Index","Categories",new {area="admin"})">Danh Mục</a></li>
+                            <li><a href="@Url.Action("Index","Users",new {area="admin"})">QL User</a></li>
+                        }
+
+                        @if (Session["tk"] == null)
+                        {
+                            <li><a href="@Url.Action("Index", "Login",new {area=""})">Login</a></li>
+                        }
+                        else
+                        {
+                            Website.Models.User tk = Session["tk"] as Website.Models.User;
+                            <li><a href="#" style="color:black">Xin Chao &nbsp;<b>@tk.Email</b></a></li>
+                            <li><a href="@Url.Action("Logout","Login", new { area=""})" style="color:black">Thoat</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper" class="container">
+        <section class="navbar main-menu">
+            <div class="navbar-inner main-menu">
+                <a href="@Url.Action("Index","Home", new {area="" })" class="logo pull-left"><img src="~/Content/themes/images/logo.png" class="site_logo" alt=""></a>
+                <nav id="menu" class="pull-right">
+                    <ul class="sf-js-enabled sf-shadow">
+                        <li>
+                            <a href="/Home/Product" class="sf-with-ul">Official Store<span class="sf-sub-indicator"> »</span></a>
+                            <ul style="display: none; visibility: hidden;">
+                                <li><a href="http://localhost:63199/Home/Product?sortOrder=Loai2">Asus Official Store</a></li>
+                                <li><a href=".@Url.Action("Product", "Home")">Acer Official Store</a></li>
+                                <li><a href="http://localhost:63199/Home/Product?sortOrder=Loai1">MSI Official Store</a></li>
+                                <li><a href=".@Url.Action("Product", "Home")">Dell Official Store</a></li>
+                                <li><a href="@Url.Action("Product", "Home")">HP Official Store</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","Products")" class="sf-with-ul">Laptop Gaming<span class="sf-sub-indicator"> »</span></a>
+                            <ul style="display: none; visibility: hidden;">
+                                <li><a href="@Url.Action("Index","Products")">Asus</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Acer</a></li>
+                                <li><a href="@Url.Action("Index","Products")">MSI</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Dell</a></li>
+                                <li><a href="@Url.Action("Index","Products")">HP</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Lenovo</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","Products")" class="sf-with-ul">Laptop văn phòng<span class="sf-sub-indicator"> »</span></a>
+                            <ul style="display: none; visibility: hidden;">
+                                <li><a href="@Url.Action("Index","Products")">Asus</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Acer</a></li>
+                                <li><a href="@Url.Action("Index","Products")">MSI</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Dell</a></li>
+                                <li><a href="@Url.Action("Index","Products")">HP</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Lenovo</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Macbook</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","Products")" class="sf-with-ul">Gaming Gear<span class="sf-sub-indicator"> »</span></a>
+                            <ul style="display: none; visibility: hidden;">
+                                <li><a href="@Url.Action("Index","Products")">Chuột</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Bàn phím</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Tai nghe</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Tay cầm</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Loa</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Webcam</a></li>
+                                <li><a href="@Url.Action("Index","Products")">Lót chuột</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./products.html" class="sf-with-ul">Gaming chair<span class="sf-sub-indicator"> »</span></a>
+                            <ul style="display: none; visibility: hidden;">
+                                <li><a href="@Url.Action("Index","Products")">AORUS</a></li>
+                                <li><a href="@Url.Action("Index","Products")">AK Racing</a></li>
+                                <li><a href="@Url.Action("Index","Products")">DxRacer</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./products.html" class="sf-with-ul">Đế tải nhiệt<span class="sf-sub-indicator"> »</span></a>
+                            <ul style="display: none; visibility: hidden;">
+                                <li><a href="@Url.Action("Index","Products")">Cooler Master</a></li>
+                                <li><a href="@Url.Action("Index","Products")">DeepCool</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section><div class="_toggleMenu" style="display: none;">
+        </div>
+        <div class="mainn">
+            @RenderBody()
+        </div>
+
+        <section class="our_client">
+            <h4 class="title"><span class="text">Manufactures</span></h4>
+            <div class="row">
+                <div class="span2">
+                    <a href="@Url.Action("Index","Products")"><img alt="" src="~/Content/themes/images/clients/14.png"></a>
+                </div>
+                <div class="span2">
+                    <a href="http://localhost:63199/Home/Product?sortOrder=Loai2"><img alt="" src="~/Content/themes/images/clients/35.jpg"></a>
+                </div>
+                <div class="span2">
+                    <a href="@Url.Action("Index","Products")"><img alt="" src="~/Content/themes/images/clients/1.jpg"></a>
+                </div>
+                <div class="span2">
+                    <a href="http://localhost:63199/Home/Product?sortOrder=Loai1"><img alt="" src="~/Content/themes/images/clients/2.jpg"></a>
+                </div>
+                <div class="span2">
+                    <a href="@Url.Action("Index","Products")"><img alt="" src="~/Content/themes/images/clients/3.jpg"></a>
+                </div>
+                <div class="span2">
+                    <a href="#"><img alt="" src="~/Content/themes/images/clients/4.jpg"></a>
+                </div>
+            </div>
+        </section>
+        <section id="footer-bar">
+            <div class="row">
+                <div class="span3">
+                    <h4>Navigation</h4>
+                    <ul class="nav">
+                        <li><a href="@Url.Action("Index","Home")">Homepage</a></li>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="@Url.Action("Contact","Home")">Contac Us</a></li>
+                        <li><a href="@Url.Action("Index","Cart")">Your Cart</a></li>
+                        @if (Session["tk"] == null)
+                        {
+                            <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                        }
+                        else
+                        {
+                            Website.Models.User tk = Session["tk"] as Website.Models.User;
+
+                            <li><a href="@Url.Action("...","User",new { id = tk.UserID })" style="color:black">Xin chào &nbsp;<b>@tk.Email</b></a></li>
+
+                            <li>><a href="@Url.Action("Logout","Login", new { area=""})" style="color:black">Thoát</a></li>
+
+                        }
+                    </ul>
+                </div>
+                <div class="span4">
+                    <h4>My Account</h4>
+                    <ul class="nav">
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Order History</a></li>
+                        <li><a href="#">Wish List</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div class="span5">
+                    <a href="@Url.Action("Index", "CheckOut")"><p class="logo"><img src="~/Content/themes/images/logo.png" class="site_logo" alt=""></p></a>
+                    <p>
+                        Chuyên máy tính PC, Laptop Gaming MSI, Asus &amp; Acer chính hãng.
+                        Mang đến cho khách hàng giải pháp xây dựng máy tính hoàn chỉnh..
+                    </p>
+                    <br>
+                    <span class="social_icons">
+                        <a class="facebook" href="#">Facebook</a>
+                        <a class="twitter" href="#">Twitter</a>
+                        <a class="skype" href="#">Skype</a>
+                        <a class="vimeo" href="#">Vimeo</a>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section id="copyright">
+            <span>Copyright 2013 bootstrappage template  All right reserved.</span>
+        </section>
+    </div>
+    <script src="~/Content/themes/js/common.js"></script>
+    <script src="~/Content/themes/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(document).ready(function () {
+                $('.flexslider').flexslider({
+                    animation: "fade",
+                    slideshowSpeed: 4000,
+                    animationSpeed: 600,
+                    controlNav: false,
+                    directionNav: true,
+                    controlsContainer: ".flex-container" // the container that holds the flexslider
+                });
+            });
+        });
+    </script>
+    <div>
+    </div>
+    <div id="topcontrol" title="Scroll Back to Top" style="position: fixed; bottom: 12px; right: 0px; opacity: 1; cursor: pointer;"><img src="~/Content/themes/images/gotop.png" style="width:40px; height:40px; margin-top: 25px; margin-right: 17px;"></div>
+</body>
+</html>

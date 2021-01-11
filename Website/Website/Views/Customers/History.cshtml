@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+@model IEnumerable<Website.Models.Order>
+@*@foreach (var d in Model)
+    {*@
+<table class="table">
+    <tr>
+        <th>
+            Email
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Thời Gian
+        </th>
+        <th>
+            Phương Thức Thanh Toán
+        </th>
+        <th>
+            Tình Trạng
+        </th>
+        <th>
+            Thông tin chi tiết
+        </th>
+    </tr>
+
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>
+                @d.Email
+            </td>
+            <td>
+                @d.Descriptions
+            </td>
+            <td>
+                @d.Date
+            </td>
+            <td>
+                @d.PhuongThuc
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => d.TinhTrang)
+            </td>
+            <td>
+                <form action="@Url.Action("DetailHistory","Customers",new {id=d.OrderID })">
+                    <input type="submit" value="Xem chi tiết" />
+                </form>
+            </td>
+            
+        </tr>
+
+}
+    </table>
+    @*<h2>MA @d.OrderID</h2>
+        <h2>MK @d.CustomerID</h2>
+        <h2>PT @d.PhuongThuc</h2>
+        <h2>TT @d.TinhTrang</h2>
+        <form action="@Url.Action("DetailHistory","Customers",new {id=d.OrderID })">
+            <input type="submit" value="Detail" />
+        </form>
+        }
+        <h2>History</h2>*@
+
+
+

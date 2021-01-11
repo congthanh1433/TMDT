@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Website.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+<section class="homepage-slider" id="home-slider">
+    <div class="flexslider">
+        <ul class="slides">
+            <li class="" style="width: 100%; float: left; margin-right: -100%; position: relative; display: none;">
+                <img src="~/Content/themes/images/carousel/banner-1.jpg" alt="">
+            </li>
+            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: list-item;" class="flex-active-slide">
+                <img src="~/Content/themes/images/carousel/banner-2.jpg" alt="">
+            </li>
+            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: none;" class="">
+                <img src="~/Content/themes/images/carousel/banner-3.jpg" alt="">
+            </li>
+        </ul>
+        <ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul>
+    </div>
+</section>
+<section class="our_client">
+    <h4 class="title"><span class="text">Official Store</span></h4>
+    <div class="row">
+        <div class="span2">
+            <a href="#"><img alt="" src="~/Content/themes/images/clients/ACER-store.jpg"></a>
+        </div>
+        <div class="span2">
+            <a href="http://localhost:63199/Home/Product?sortOrder=Loai2"><img alt="" src="~/Content/themes/images/clients/Asus-store.jpg"></a>
+        </div>
+        <div class="span2">
+            <a href="http://localhost:63199/Home/Product?sortOrder=Loai1"><img alt="" src="~/Content/themes/images/clients/MSI-store.jpg"></a>
+        </div>
+        <div class="span2">
+            <a href="#"><img alt="" src="~/Content/themes/images/clients/PC-store.jpg"></a>
+        </div>
+    </div>
+</section>
+<section class="header_text">
+    Chuyên máy tính PC, Laptop Gaming MSI, Asus &amp; Acer chính hãng.
+    <br>Mang đến cho khách hàng giải pháp xây dựng máy tính hoàn chỉnh.
+</section>
+<section class="main-content">
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span12">
+                    <h4 class="title">
+                        <span class="pull-left"><span class="text"><span class="line">LAPTOP <strong>MSI GAMING</strong></span></span></span>
+                        <span class="pull-right">
+                            <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+                        </span>
+                    </h4>
+                    <div id="myCarousel" class="myCarousel carousel slide">
+                        <div class="carousel-inner">
+                            <!--trang 1-->
+                            <div class="active item">
+                                <ul class="thumbnails">
+                                    @Html.Raw(ViewBag.View)
+                                </ul>
+                            </div>
+                            <!--trang2-->   
+                            <div class="item">
+                                <ul class="thumbnails">
+                                    @Html.Raw(ViewBag.View1)
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="span12">
+                    <h4 class="title">
+                        <span class="pull-left"><span class="text"><span class="line">Laptop <strong>Asus Gaming</strong></span></span></span>
+                        <span class="pull-right">
+                            <a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
+                        </span>
+                    </h4>
+                    <div id="myCarousel-2" class="myCarousel carousel slide">
+                        <div class="carousel-inner">
+                            <div class="active item">
+                                <ul class="thumbnails">
+                                    @Html.Raw(ViewBag.View2)
+                                </ul>
+                            </div>
+                            <div class="item">
+                                <ul class="thumbnails">
+                                    @Html.Raw(ViewBag.View3)
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row feature_box">
+                <div class="span4">
+                    <div class="service">
+                        <div class="responsive">
+                            <img src="~/Content/themes/images/feature_img_2.png" alt="">
+                            <h4>MODERN <strong>REPAIR</strong></h4>
+                            <p>Hồ trợ sữa chữa laptop, bảo hành và vệ sinh laptop.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="service">
+                        <div class="customize">
+                            <img src="~/Content/themes/images/feature_img_1.png" alt="">
+                            <h4>FREE <strong>SHIPPING</strong></h4>
+                            <p>Freeship cho tất cả đơn hàng.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="service">
+                        <div class="support">
+                            <img src="~/Content/themes/images/feature_img_3.png" alt="">
+                            <h4>24/7 LIVE <strong>SUPPORT</strong></h4>
+                            <p>Hổ trợ tơ vấn khách hàng 24/7.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

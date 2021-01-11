@@ -1,0 +1,136 @@
+﻿@model IEnumerable<Website.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<section class="header_text sub">
+    <img class="pageBanner" src="~/Content/themes/images/pageBanner.png" alt="New products">
+    <h4><span>Shopping Cart</span></h4>
+</section>
+<section class="main-content">
+    <div class="row">
+        <div class="span9">
+            <h4 class="title"><span class="text"><strong>Your</strong> Cart</span></h4>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        <a>Ngày</a>
+                    </th>
+                    <th>
+                        <a>Địa chỉ</a>
+                    </th>
+                    <th>
+                        <a>Hình ảnh</a>
+                    </th>
+                    <th>
+                        <a>Tên sản phẩm</a>
+                    </th>
+                    <th>
+                        <a>Giá tiền</a>
+                    </th>
+                    <th>
+                        <a>Số Lượng</a>
+                    </th>
+                    <th>
+                        <a>Tinh Trạng</a>
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.Descriptions)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.Product.Hinh)" width="80" height="80" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantitySale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.TinhTrang)
+                </td>
+                <td>
+                    <li><a href="@Url.Action("Edit", "Orders", new { id = item.OrderID })">Edit</a></li>
+                    <li><a href="@Url.Action("Delete", "Orders", new { id = item.OrderID })">Delete</a></li>
+                </td>
+            </tr>
+                }
+
+            </table>
+           
+        </div>
+        <div class="span3 col">
+            <div class="block">
+                <ul class="nav nav-list">
+                    <li class="nav-header">SUB CATEGORIES</li>
+                    <li><a href="products.html">Dòng Laptop Gaming</a></li>
+                    <li><a href="products.html">Dòng Laptop Văn Phòng</a></li>
+                    <li><a href="products.html">Phụ kiện</a></li>
+                </ul>
+                <br />
+                <ul class="nav nav-list below">
+                    <li class="nav-header">MANUFACTURES</li>
+                    <li><a href="products.html">Asus</a></li>
+                    <li><a href="products.html">Dell</a></li>
+                    <li><a href="products.html">MSI</a></li>
+                    <li><a href="products.html">Lenovo</a></li>
+                    <li><a href="products.html">Acer</a></li>
+                </ul>
+            </div>
+            <div class="block">
+                <h4 class="title">
+                    <span class="pull-left"><span class="text">Randomize</span></span>
+                    <span class="pull-right">
+                        <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+                    </span>
+                </h4>
+                <div id="myCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            <ul class="thumbnails listing-products">
+                                <li class="span3">
+                                    <div class="product-box">
+                                        <span class="sale_tag"></span>
+                                        <a href="product_detail.html"><img alt="" src="~/Content/themes/images/Asus/1.jpg"></a><br />
+                                        <a href="product_detail.html" class="title">LAPTOP GAMING ASUS TUF FX705DT-H7138T</a><br />
+                                        <a href="#" class="category">GEFORCE GTX 1650 4GB RYZEN 7-3750H 8GB 512GB 17.3″ FHD IPS 120HZ</a>
+                                        <p class="price">19.490.000 VND</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="item">
+                            <ul class="thumbnails listing-products">
+                                <li class="span3">
+                                    <div class="product-box">
+                                        <a href="product_detail.html"><img alt="" src="~/Content/themes/images/Asus/2.jpg"></a><br />
+                                        <a href="product_detail.html" class="title">LAPTOP GAMING ASUS TUF FA506IV-HN202T</a><br />
+                                        <a href="#" class="category">RTX 2060 6GB RYZEN 7-4800H 16GB 1TB 15.6″ FHD IPS 144HZ</a>
+                                        <p class="price">32.990.000 VND</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

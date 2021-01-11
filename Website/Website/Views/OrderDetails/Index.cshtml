@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Website.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+
+<section class="main-content">
+    <div class="row">
+        <div class="span9">
+            <h4 class="title"><span class="text"><strong>Your</strong> Cart</span></h4>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Order.Descriptions)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product.Hinh)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product.ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UnitPriceSale)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QuantitySale)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Order.Descriptions)
+                        </td>
+                        <td>
+                            <img src="@Url.Content(item.Product.Hinh)" width="80" height="80" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QuantitySale)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ODID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ODID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ODID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</section>

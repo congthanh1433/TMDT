@@ -1,0 +1,115 @@
+﻿@model PagedList.IPagedList<Website.Models.Product>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<section class="header_text sub">
+    <img class="pageBanner" src="/Content/themes/images/pageBanner.png" alt="New products">
+    <h4><span>New products</span></h4>
+    <div class="span2">
+        <div class="product-box">
+            <h5>@Html.ActionLink("Nhà sản xuất", "Product", new { sortOrder = ViewBag.MaSortParm })</h5>
+        </div>
+    </div>
+    <div class="span2">
+        <div class="product-box">
+            <h5>@Html.ActionLink("Tên A-Z, Z-A", "Product", new { sortOrder = ViewBag.NameSortParm })</h5>
+        </div>
+    </div>
+    <div class="span2">
+        <div class="product-box">
+            <h5>@Html.ActionLink("Giá tiền tăng - giảm", "Product", new { sortOrder = ViewBag.PriceSortParm })</h5>
+        </div>
+    </div>
+    <div class="span2">
+        <div class="product-box">
+            <h5>@Html.ActionLink("MSI", "Product", new { sortOrder = ViewBag.Loai1SortParm })</h5>
+        </div>
+    </div>
+    <div class="span2">
+        <div class="product-box">
+            <h5>@Html.ActionLink("Asus", "Product", new { sortOrder = ViewBag.Loai2SortParm })</h5>
+        </div>
+    </div>
+    <br />
+    @using (Html.BeginForm())
+    {
+        <p>
+            <br />
+            Tìm kiếm sản phẩm: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+</section>
+<section class="main-content">
+    <div class="row">
+        <div class="span9">
+            <ul class="thumbnails listing-products">
+                @foreach (var item in Model)
+                {
+                    <li class="span3">
+                        <div class="product-box">
+                            <span class="sale_tag"></span>
+                            <a href="/Home/ProductDeltal/@Html.DisplayFor(modelItem => item.ProductID)"><img src="@item.Hinh" /></a><br />
+                            <a href="/Home/ProductDeltal/@Html.DisplayFor(modelItem => item.ProductID)" class="title">@Html.DisplayFor(modelItem => item.ProductName)</a><br />
+                            <a href="/Home/ProductDeltal/@Html.DisplayFor(modelItem => item.ProductID)" class="category">@Html.DisplayFor(modelItem => item.Option)</a>
+                            <p class="price">@Html.DisplayFor(modelItem => item.Price) VND</p>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <hr>
+            <br />
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("/Product",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+        <div class="span3 col">
+            <div class="block">
+                <ul class="nav nav-list">
+                    <li class="nav-header">SUB CATEGORIES</li>
+                    <li><a href="products.html">Dòng Laptop Gaming</a></li>
+                    <li><a href="products.html">Dòng Laptop Văn Phòng</a></li>
+                    <li><a href="products.html">Phụ kiện</a></li>
+                </ul>
+                <br />
+                <ul class="nav nav-list below">
+                    <li class="nav-header">MANUFACTURES</li>
+                    <li><a href="products.html">Asus</a></li>
+                    <li><a href="products.html">Dell</a></li>
+                    <li><a href="products.html">MSI</a></li>
+                    <li><a href="products.html">Lenovo</a></li>
+                    <li><a href="products.html">Acer</a></li>
+                </ul>
+            </div>
+            <div class="block">
+                <h4 class="title">
+                    <span class="pull-left"><span class="text">Randomize</span></span>
+                    <span class="pull-right">
+                        <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+                    </span>
+                </h4>
+                <div id="myCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            @Html.Raw(ViewBag.View2)
+                        </div>
+                        <div class="item">
+                            @Html.Raw(ViewBag.View3)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <h4 class="title"><strong>Best</strong> Seller</h4>
+                <ul class="small-product">
+                    @Html.Raw(ViewBag.View4)
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

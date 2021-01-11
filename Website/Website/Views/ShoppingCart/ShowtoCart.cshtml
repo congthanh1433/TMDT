@@ -1,0 +1,113 @@
+﻿@model Website.Models.Cart
+
+@{
+    ViewBag.Title = "ShowtoCart";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<section class="header_text sub">
+    <img class="pageBanner" src="~/Content/themes/images/pageBanner.png" alt="New products">
+    <h4><span>Chi Tiết Đơn Hàng</span></h4>
+</section>
+@if(Model!=null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Hình</th>
+                <th>Giá tiền</th>
+                <th>Số lượng</th>
+                <th>Tổng giá</th>
+                <th>Xóa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Items)
+            {
+                double total = Convert.ToDouble(item.Shopping_product.Price * item.Shopping_quantity);
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model=>item.Shopping_product.ProductName)
+                    </td>
+                    <td>
+                        <img src="@item.Shopping_product.Hinh" style="width:100px; height:100px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model=>item.Shopping_product.Price)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Update_Quantity_Cart", "ShoppingCart"))
+                        {
+                            <input type="hidden" value="@item.Shopping_product.ProductID" name="ID_Product" />
+                            <input type="number" value="@item.Shopping_quantity" name="Quantity" />
+                            <input type="submit" class="btn btn-inverse" value="Cập nhật số lượng sản phẩm" />
+                        }
+
+
+                    </td>
+                    <td>
+                        Tổng giá: @total
+                    </td>
+                    <td>
+                        <a href="/ShoppingCart/RemoveCart/@item.Shopping_product.ProductID">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="4" style="text-align:center">
+                    @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                    {
+                    <table style="border-collapse:separate; border-spacing:5px;">
+                        <tr>
+                            
+                            <td>PhoneNumber:</td>
+                            <td>
+                                <input type="number" name="PhoneNumber" required />
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Address Delivery:
+                            </td>
+                            <td>
+                                <input type="text" name="Address_Delivery" required />
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Email:
+                            </td>
+                            <td>
+                                <input type="text" name="Email" required />
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Create","Customers")" class="btn btn-success">Register</a>
+                            </td>
+                            <td>
+                                <input type="submit" value="CheckOut" class="btn btn-success" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th colspan="5" style="text-align:right">Tổng Giá Tiền Hóa Đơn:<th style="color:chocolate">@Model.Total_Money()</th></th>
+            </tr>
+        </tfoot>
+    </table>
+    <form action="@Url.Action("PaymentWithPaypal","ShoppingCart")">
+        <input type="submit" value="Paypal" />
+    </form>
+    <a href="@Url.Action("Index","Home")">Continue to Shopping</a>
+}
